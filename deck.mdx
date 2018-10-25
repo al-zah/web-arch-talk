@@ -1,23 +1,151 @@
 import { Head } from 'mdx-deck'
+import { Image } from 'mdx-deck'
+import { Mermaid, graph } from './components/mermaid.js';
 
-export { default as theme } from './theme'
+export { condensed as theme } from 'mdx-deck/themes'
 
 <Head>
-  <title>Presentation Title</title>
+  <title>Web app architecture</title>
 </Head>
 
-# Hello
+# Web app architecture
+
+heavily copypasted from Bob Martin & applied to DyP stack
 
 ---
 
-## Edit this file
-
-To create your presentation
-
-```notes
-- Create speaker notes in fenced code blocks
-```
+- Frontend is becoming more complex;
+- Frontend code is deadline driven;
 
 ---
 
-<https://github.com/jxnblk/mdx-deck>
+- approach to clean code right after deadline (demo/release) never works
+- new features are never ending
+
+---
+
+Meanwhile shitty code is slowing your development
+
+---
+
+<Image src='./img/fine.jpg' size={300} />
+
+---
+
+## How we are trying to solve it
+
+- New frameworks
+- New tools
+
+(hello js fatigue)
+
+---
+
+## How we _could_ solve it
+
+- Clean architecture
+
+---
+
+## architecture definition
+
+- It's goal to ease development/deploy/maintenance process
+- It is a blueprint of particular use case
+- It is about intent, not the tool or framework
+
+---
+
+<Image src='./img/clean-arch.jpg' size={500} />
+
+---
+
+Framework or language should not tell us app structure (Angular/Elm 🤔)
+
+---
+
+Good architecture should be initially built with as minimal detail decisions as possible
+
+---
+
+You can dump your UI and rewrite it from scratch pretty easily
+
+---
+
+<Image src='./img/abram1.png' size={300} />
+
+---
+
+<Image src='./img/abram2.png' size={300} />
+
+---
+
+<Image src='./img/abram3.png' size={300} />
+
+---
+
+Use cases implemented by entities (business objects)
+
+---
+
+<Image src='./img/ts.png' size={300} />
+
+---
+
+You don't need API mocks when you use typescript
+
+---
+
+TS 20/80
+
+---
+
+Unit Testing
+
+---
+
+## UI tests (Enzyme.shallow & snapshot testing)
+
+The idea of clean architecture is to eliminate all the logic from the UI layer &
+make it so dumb we don't need to test it
+
+---
+
+## Models/Controllers/APIs/Services/etc tests
+
+- web is I/O device
+- time-consuming & essentially complex maintenance of mocks/stubs/etc of external APIs
+
+---
+
+Possible ways to invest your time into stability & dev satisfaction:
+
+1. E2E testing (nightwatch, cypress, puppeteer);
+2. Type safety
+3. Code splitting & HMR for dev experience
+...
+
+---
+
+## DyP recap
+
+---
+
+## SOLID
+
+- Single-responsiblity principle, SRP
+- Open-closed principle, OCP (mobx + typescript 🤔)
+- Liskov substitution principle, LSP
+- Interface Segregation Principle, ISP
+- Dependency Inversion Principle, DIP
+
+---
+
+## Component Principles (for early stage)
+
+- Reuse / Release Equivalence Principle (RRP) (components should have same goal)
+- Common Closure Principle (CCP) (components should have same cause for change)
+- the Acyclic Dependancies Principles
+
+---
+
+PS Don't use redux
